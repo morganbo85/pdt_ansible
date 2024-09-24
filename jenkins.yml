@@ -1,0 +1,27 @@
+---
+- name: Update Java and Jenkins
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+
+  - name: update repository index
+    apt:
+      update_cache: yes
+
+  - name: make a copy of jenkins config
+    ansible.builtin.copy:
+      src: /var/lib/jenkins/config.xml
+      dest: /var/lib/jenkins/config.xml.working
+      remote_src: yes
+
+  - name: Update java to 11
+    apt:
+      name: java
+      state: 11
+
+  - name: Update Jenkins
+    apt:
+      name: jenkins
+      state: latest
+
