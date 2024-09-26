@@ -4,6 +4,6 @@
   tasks:
     - name: Change user password
       user:
-        name: itst
+        name: bmorgan
         update_password: always
         password: "{{ newpassword|password_hash('sha512') }}"
