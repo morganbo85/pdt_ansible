@@ -4,3 +4,4 @@ ansible all -i online_svrs -m command -a uptime
 ansible-playbook -i inventory/online_svrs playbooks/passwd.yml --extra-vars newpassword=CamNewPass55
 ansible-playbook -i inventory/home playbooks/passwd.yml --extra-vars newpassword='Trudy1985sudo vi test1' --ask-become-pass
 ansible-playbook -i inventory/home playbooks/update.yml --ask-become-pass
+ansible-playbook -i inventory/online_svrs playbooks/ntfy.yml --ask-become-pass
