@@ -1,0 +1,30 @@
+---
+- name: Manage Docker container for Kuma
+  hosts: watchtower
+  become: true
+  gather_facts: no
+  tasks:
+    - name: Pull the latest Kuma Docker image
+      docker_image:
+        name: louislam/uptime-kuma
+        tag: 1
+        source: pull
+
+    - name: Stop the running Kuma container
+      docker_container:
+        name: uptime-kuma
+        state: stopped
+
+    - name: Remove the stopped Kuma container
+      docker_container:
+        name: uptime-kuma
+        state: absent
+
+    - name: Change to the Kuma directory
+      command: chdir=/itst/kuma pwd
+      register: kuma_dir
+
+    - name: Run Docker Compose with --force-recreate
+      command: docker-compose up -d --force-recreate
+      args:
+        chdir: /itst/kuma
