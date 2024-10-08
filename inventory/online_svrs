@@ -1,4 +1,4 @@
-#panel ansible_host=172.233.223.182 ansible_user=itst
+quest ansible_host=198.58.105.88 ansible_user=itst
 watchtower ansible_host=172.234.150.15 ansible_user=itst
 bridge ansible_host=72.14.176.10 ansible_user=itst
 shortener ansible_host=198.58.114.48 ansible_user=itst
