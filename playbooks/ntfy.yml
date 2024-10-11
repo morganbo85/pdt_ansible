@@ -1,10 +1,15 @@
 ---
 - name: set a cron job
-  hosts: quest
+  hosts: firefly
   become: yes
   gather_facts: no
   tasks:
-  
+
+    - name: Ensure itst user exists
+      user:
+        name: itst
+        state: present
+
     - name: move the script we want to run
       copy:
         src: files/itst/sbin/disk_alert.sh
@@ -12,7 +17,7 @@
         owner: itst
         group: itst
         mode: 0755
-      
+
     - name: set cron job
       cron:
         name: set disk check cron
@@ -27,9 +32,12 @@
         owner: root
         group: root
         mode: 0755
+      become: yes
 
     - name: add ntfy to end of pam.d
       lineinfile:
         dest: /etc/pam.d/sshd
         line: "session optional pam_exec.so /usr/local/bin/ntfy-ssh-login.sh"
         state: present
+        regexp: "^session optional pam_exec.so /usr/local/bin/ntfy-ssh-login.sh"
+      become: yes
