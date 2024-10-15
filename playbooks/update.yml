@@ -20,5 +20,3 @@
       reboot:
       when: reboot_required_file.stat.exists == true
 
-    - name: Notify completion by sending a curl request
-      command: curl -d "install updates ansible script has ended" http://172-234-150-15.ip.linodeusercontent.com/itst
