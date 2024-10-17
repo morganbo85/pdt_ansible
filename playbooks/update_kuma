@@ -1,6 +1,6 @@
 ---
 - name: Manage Docker container for Kuma
-  hosts: watchtower
+  hosts: quest
   become: true
   gather_facts: no
   tasks:
