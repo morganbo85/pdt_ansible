@@ -1,2 +1,2 @@
 quest ansible_host=198.58.105.88 ansible_user=itst
-bridge ansible_host=72.14.176.10 ansible_user=itst
+relay ansible_host=45.79.197.214 ansible_user=itst
