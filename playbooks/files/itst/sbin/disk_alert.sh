@@ -1,12 +1,12 @@
 #!/bin/bash
 
 mingigs=10
-avail=$(df | awk '$6 == "/" && $4 < '$mingigs' * 1024*1024 { print $4/1024/1024 }')
+avail=$(df -BG /mnt/backup | awk 'NR==2 {print $4+0}')  # Extract available GB as an integer
 topicurl=198.58.105.88:8080/itst
 
-if [ -n "$avail" ]; then
+if (( avail < mingigs )); then
   curl \
-    -d "Only $avail GB available on the root disk. Better clean that up." \
+    -d "Only $avail GB available on the /mnt/backup disk. Better clean that up." \
     -H "Title: Low disk space alert on $(hostname)" \
     -H "Priority: high" \
     -H "Tags: warning,cd" \
