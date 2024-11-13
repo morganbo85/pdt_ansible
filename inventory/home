@@ -1,4 +1,4 @@
 firefly ansible_host=192.168.10.11 ansible_user=bmorgan
 gitlab ansible_host=192.168.10.95 ansible_user=bmorgan
 opi11 ansible_host=192.168.10.128 ansible_user=bmorgan
-
+proxmox ansible_host=192.168.10.91 ansible_user=root
