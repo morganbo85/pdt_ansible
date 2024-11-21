@@ -1,1 +1,5 @@
 pve-1 ansible_host=192.168.10.91 ansible_user=root
+pve-2 ansible_host=192.168.10.151 ansible_user=root
+samba ansible_host=192.168.10.188 ansible_user=itst
+adguard ansible_host=192.168.10.108 ansible_user=itst
+nginx ansible_host=192.168.10.130 ansible_user=itst
