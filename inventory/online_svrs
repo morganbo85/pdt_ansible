@@ -1,3 +1,1 @@
 quest ansible_host=198.58.105.88 ansible_user=itst
-relay ansible_host=45.79.197.214 ansible_user=itst
-backup ansible_host=172.232.164.232 ansible_user=itst
