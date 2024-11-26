@@ -1,1 +1,2 @@
 quest ansible_host=198.58.105.88 ansible_user=itst
+filecloud ansible_host=filecloud.itst.online ansible_user=ubuntu
