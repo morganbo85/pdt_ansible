@@ -1,6 +1,6 @@
 ---
 - name: set a cron job
-  hosts: filecloud
+  hosts: all
   become: yes
   gather_facts: no
   tasks:
