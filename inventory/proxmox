@@ -5,3 +5,4 @@ samba ansible_host=192.168.10.188 ansible_user=itst
 adguard ansible_host=192.168.10.108 ansible_user=itst
 firefly ansible_host=192.168.10.87 ansible_user=itst
 lubelogger ansible_host=192.168.10.4 ansible_user=itst
+kali ansible_host=192.168.10.117 ansible_user=itst
