@@ -2,7 +2,4 @@ pve-1 ansible_host=192.168.10.91 ansible_user=itst
 pve-2 ansible_host=192.168.10.151 ansible_user=itst
 pve-3 ansible_host=192.168.10.112 ansible_user=itst
 samba ansible_host=192.168.10.188 ansible_user=itst
-adguard ansible_host=192.168.10.108 ansible_user=itst
 firefly ansible_host=192.168.10.87 ansible_user=itst
-lubelogger ansible_host=192.168.10.4 ansible_user=itst
-kali ansible_host=192.168.10.117 ansible_user=itst
