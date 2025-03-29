@@ -4,3 +4,5 @@ backup	ansible_host=34.225.25.234 ansible_user=itst
 samba ansible_host=192.168.10.188 ansible_user=itst
 firefly ansible_host=192.168.10.87 ansible_user=itst
 backup ansible_host=34.225.25.234 ansible_user=itst
+lubelogger ansible_host=192.168.10.88 ansible_user=itst
+gitea ansible_host=192.168.10.208 ansible_user=itst
