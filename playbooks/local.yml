@@ -1,0 +1,20 @@
+# ansible pull
+- hosts: localhost
+  connection: local
+  become: true
+
+  pre_tasks:
+    - name: pre-run | update package cache (debian, etc)
+      tags: always
+      apt: update_cache=yes
+      changed_when: False
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
+  tasks:
+    - include_tasks: local/ansible.yml
+#    - include_tasks: local/bmorgan.yml
+    - include_tasks: local/itst.yml
+    - include_tasks: local/systemd.yml
+    - include_tasks: local/packages.yml
+    - include_tasks: local/sshd.yml
+#    - include_tasks: local/update_pass.yml

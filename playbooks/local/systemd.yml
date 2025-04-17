@@ -1,0 +1,24 @@
+- name: Ensure systemd unit is installed
+  copy:
+    src: provision.service
+    dest: /etc/systemd/system/provision.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure systemd timer is installed
+  copy:
+    src: provision.timer
+    dest: /etc/systemd/system/provision.timer
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Reload systemd daemon
+  command: systemctl daemon-reload
+
+- name: Enable and start the provisioning timer
+  systemd:
+    name: provision.timer
+    enabled: true
+    state: started

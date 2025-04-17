@@ -1,0 +1,70 @@
+# aliases
+alias ..='cd ..'                                
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias back='cd $OLDPWD'
+alias c='clear'
+alias i='sudo apt install'
+alias u='sudo apt update'
+alias ug='sudo apt upgrade'
+alias mkdir='mkdir -pv'
+alias ports='netstat -tulanp'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
+alias tree='tree -L 2'
+alias rsync='rsync -avzh --progress --stats'
+alias shutdown="sudo shutdown -h 1"
+alias apt='sudo apt'
+alias wx='cd /mnt/c/Users/bmorgan'
+alias shred='sudo shred -fvuzn 5'
+alias showalias='cat ~/.bash_aliases'
+alias reload='source ~/.bash_aliases'
+alias ssha='eval "$(ssh-agent)"; ssh-add ~/.ssh/ansible '
+alias dfl='df -lh | grep -vw snap | grep -v loop | grep -v tmpfs'
+alias dname="docker ps --format '{{.Names}}'"
+alias nmap='nmap -A -T4'
+alias ps='ps -e | more'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias difflines="diff --old-line-format='< %L' --new-line-format='> %L' --unchanged-line-format=''"
+alias la='ls -alh'
+alias ping='ping -c 5'
+alias sch='sudo du -sch * 2>/dev/null | sort -h'
+alias wget='wget -c'
+
+# View Git status.
+alias gs='git status'
+alias sshost='grep ^Host ~/.ssh/config'
+
+# Commit changes to the code.
+alias gcommit='git commit'
+alias gadd='git add --all'
+alias gpull='git pull'
+alias gpush='git push'
+
+# View the Git log.
+alias gl='git log --oneline'
+
+# View the difference.
+alias gd='git diff'
+
+## get top process eating memory
+alias mem5='ps auxf | sort -nr -k 4 | head -5'
+alias mem10='ps auxf | sort -nr -k 4 | head -10'
+
+alias cpu5='ps auxf | sort -nr -k 3 | head -5'                                      
+alias cpu10='ps auxf | sort -nr -k 3 | head -10'
+
+## List largest directories (aka "ducks")
+alias dir5='du -cksh * | sort -hr | head -n 5'
+alias dir10='du -cksh * | sort -hr | head -n 10'
+
+# Safetynets
+# do not delete / or prompt if deleting more than 3 files at a time #
+alias rm='rm -I --preserve-root --interactive=once'
+
+# Parenting changing perms on / #
+alias chown='chown --preserve-root'
+alias chmod='chmod -c --preserve-root'
+alias chgrp='chgrp --preserve-root' 
+
+alias cas-one='ssh -l camgian cas-one'

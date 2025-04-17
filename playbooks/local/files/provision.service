@@ -1,0 +1,9 @@
+[Unit]
+Description=Run ansible-pull to auto-provision
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ansible
+ExecStart=/usr/bin/ansible-pull -o -U git@github.com:morganbo85/ansible_dt.git

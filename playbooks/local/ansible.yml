@@ -1,0 +1,13 @@
+- name: create ansible user
+  user:
+    name: ansible
+    system: yes
+
+- name: copy sudoer_ansible
+  copy:
+    src: files/ansible/sudoer_ansible
+    dest: /etc/sudoers.d/ansible
+    owner: root
+    group: root
+    mode: 0440
+

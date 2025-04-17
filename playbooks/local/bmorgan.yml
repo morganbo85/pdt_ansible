@@ -1,0 +1,70 @@
+- name: create bmorgan group if it doesn't exist
+  ansible.builtin.group:
+    name: bmorgan
+    state: present
+
+- name: create bmorgan user
+  user:
+    name: bmorgan
+    system: false
+    groups: "bmorgan,sudo"
+    create_home: true
+    home: "/home/bmorgan"
+    #    mode: 0751
+    shell: "/bin/bash"
+
+- name: Ensure the directory /.ssh exists
+  ansible.builtin.file:
+    path: /home/bmorgan/.ssh
+    state: directory
+
+- name: copy custom .bashrc file
+  copy:
+    src: files/bashrc
+    dest: /home/bmorgan/.bashrc
+    owner: bmorgan
+    group: bmorgan
+
+- name: copy custom .bashprompt file
+  copy:
+    src: files/bash_prompt
+    dest: /home/bmorgan/.bash_prompt
+    owner: bmorgan
+    group: bmorgan
+
+- name: copy custom bash_aliases file
+  copy:
+    src: files/bash_aliases
+    dest: /home/bmorgan/.bash_aliases
+    owner: bmorgan
+    group: bmorgan
+
+- name: copy custom authorized_key file
+  copy:
+    src: files/authorized_keys
+    dest: /home/bmorgan/.ssh/authorized_keys
+    owner: bmorgan
+    group: bmorgan
+
+- name: copy custom profile.d file
+  copy:
+    src: files/bmorgan.sh
+    dest: /etc/profile.d/bmorgan.sh
+    owner: root
+    group: root
+    mode: 0440
+
+- name: copy custom sudoers.d file
+  copy:
+    src: files/sudoer_bmorgan
+    dest: /etc/sudoers.d/bmorgan
+    owner: root
+    group: root
+    mode: 0440
+
+- name: copy custom tmux file
+  copy:
+    src: files/tmux.conf
+    dest: /home/bmorgan/.tmux.conf
+    owner: bmorgan
+    group: bmorgan

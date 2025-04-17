@@ -1,0 +1,10 @@
+[Unit]
+Description=Run ansible-pull every 10 minutes with random delay
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=10min
+RandomizedDelaySec=60s
+
+[Install]
+WantedBy=timers.target

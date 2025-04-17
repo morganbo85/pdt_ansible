@@ -1,0 +1,5 @@
+- name: updating bmorgan password
+  user:
+   name: bmorgan
+   update_password: always
+   password: $6$SCWLFwCWsCnxBFzu$S/mJh15OqsPop760zkANMm.rh9kVOGunIrOUfgTsa4NUKLW.RAAVtTuolMqUSLWGxwhS4LWkvTCSJbwUh8bkC.

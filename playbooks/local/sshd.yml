@@ -1,0 +1,19 @@
+# Inserted by ansible
+- name: change sshd keep awake
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#ClientAliveInterval'
+    line: ClientAliveInterval 200
+
+- name: change sshd keep awake
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#ClientAliveCountMax'
+    line: ClientAliveCountMax 3
+  register: sshd
+
+- name: restart sshd
+  ansible.builtin.service:
+    name: sshd
+    state: restarted
+  when: sshd.changed
