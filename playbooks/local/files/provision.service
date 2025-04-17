@@ -5,9 +5,9 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-# Run as root (default); you can also explicitly set User=root if needed
+User=root
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-ExecStart=/usr/bin/ansible-pull -o -U https://github.com/morganbo85/ansible_dt.git playbooks/local.yml
+ExecStart=/bin/bash -c 'sleep $((RANDOM % 60)); /usr/bin/ansible-pull -o -U https://github.com/morganbo85/ansible_dt.git playbooks/local.yml'
 
 [Install]
 WantedBy=multi-user.target
