@@ -1,0 +1,43 @@
+---
+- name: Create passwordless 'ansible' user for automation
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Ensure 'ansible' user exists
+      ansible.builtin.user:
+        name: ansible
+        shell: /bin/bash
+        create_home: yes
+
+    - name: Create .ssh directory for 'ansible' user
+      ansible.builtin.file:
+        path: /home/ansible/.ssh
+        state: directory
+        owner: ansible
+        group: ansible
+        mode: '0700'
+
+    - name: Add authorized SSH key for 'ansible' user (replace with your real key)
+      ansible.builtin.copy:
+        dest: /home/ansible/.ssh/authorized_keys
+        content: |
+          ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILKFoQfAiRkhVOYPm4dEyRoUx9IsEBVfFRX2lXFLWduv bmorgan_pdt50
+        owner: ansible
+        group: ansible
+        mode: '0600'
+
+    - name: Add sudoers file for 'ansible' user
+      ansible.builtin.copy:
+        dest: /etc/sudoers.d/ansible
+        content: |
+          ansible ALL=(ALL) NOPASSWD: ALL
+        owner: root
+        group: root
+        mode: '0440'
+
+    - name: Validate sudoers file syntax
+      ansible.builtin.command: visudo -cf /etc/sudoers.d/ansible
+      register: visudo_check
+      changed_when: false
+      failed_when: visudo_check.rc != 0

@@ -1,3 +1,7 @@
-pve-1 ansible_host=192.168.10.91 ansible_user=itst
-pve-2 ansible_host=192.168.10.151 ansible_user=itst
-pve-3 ansible_host=192.168.10.112 ansible_user=itst
+[pve]
+pve-1 ansible_host=192.168.10.91 
+pve-2 ansible_host=192.168.10.151
+pve-3 ansible_host=192.168.10.112
+
+[pve:vars]
+ansible_user=ansible

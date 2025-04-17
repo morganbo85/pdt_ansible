@@ -5,6 +5,8 @@
   gather_facts: yes
 
   tasks:
+
+    # Debian/Ubuntu Updates
     - name: Update packages on Debian/Ubuntu
       apt:
         update_cache: yes
@@ -16,6 +18,13 @@
         path: /var/run/reboot-required
       register: debian_reboot_required
       when: ansible_os_family == "Debian"
+
+    # RHEL/CentOS Updates
+    - name: Ensure 'yum-utils' is installed (provides needs-restarting)
+      yum:
+        name: yum-utils
+        state: present
+      when: ansible_os_family == "RedHat"
 
     - name: Update packages on RHEL/CentOS
       yum:
@@ -33,13 +42,19 @@
     - name: Set reboot needed flag on RHEL if required
       set_fact:
         rhel_reboot_required: true
-      when: rhel_reboot_check.rc == 1
+      when:
+        - ansible_os_family == "RedHat"
+        - rhel_reboot_check is defined
+        - rhel_reboot_check.rc is defined
+        - rhel_reboot_check.rc == 1
 
+    # Alpine Linux Updates
     - name: Update packages on Alpine
       apk:
         upgrade: yes
       when: ansible_os_family == "Alpine"
 
+    # Reboots
     - name: Reboot if required on Debian
       reboot:
         msg: "Reboot initiated by Ansible after Debian updates"
@@ -48,7 +63,9 @@
         pre_reboot_delay: 0
         post_reboot_delay: 30
         test_command: whoami
-      when: ansible_os_family == "Debian" and debian_reboot_required.stat.exists
+      when:
+        - ansible_os_family == "Debian"
+        - debian_reboot_required.stat.exists
 
     - name: Reboot if required on RHEL
       reboot:
@@ -58,6 +75,6 @@
         pre_reboot_delay: 0
         post_reboot_delay: 30
         test_command: whoami
-      when: ansible_os_family == "RedHat" and rhel_reboot_required | default(false)
-
-    # Optional: Add Alpine logic if needed, though Alpine typically doesn't require reboots
+      when:
+        - ansible_os_family == "RedHat"
+        - rhel_reboot_required | default(false)
