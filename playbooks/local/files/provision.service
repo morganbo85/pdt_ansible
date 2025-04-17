@@ -5,5 +5,5 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-User=ansible
+User=root
 ExecStart=/usr/bin/ansible-pull -o -U git@github.com:morganbo85/ansible_dt.git playbooks/local.yml
