@@ -2,7 +2,7 @@
 
 mingigs=5
 avail=$(df -BG / | awk 'NR==2 {print $4+0}')  # Extract available GB as an integer
-topicurl=44.217.53.30/itst_aws
+topicurl=alert.morganbo.com/nKYocnvUVRgzYByJ
 
 if (( avail < mingigs )); then
   curl \

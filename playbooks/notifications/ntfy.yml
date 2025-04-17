@@ -12,7 +12,7 @@
 
     - name: move the script we want to run
       copy:
-        src: files/itst/sbin/disk_alert.sh
+        src: playbooks/files/itst/sbin/disk_alert.sh
         dest: /home/itst/sbin/
         owner: itst
         group: itst
@@ -25,19 +25,3 @@
         minute: "*/10"
         job: /home/itst/sbin/disk_alert.sh
 
-    - name: move script for login alerts
-      copy:
-        src: files/usr/local/bin/ntfy-ssh-login.sh
-        dest: /usr/local/bin/
-        owner: root
-        group: root
-        mode: 0755
-      become: yes
-
-    - name: add ntfy to end of pam.d
-      lineinfile:
-        dest: /etc/pam.d/sshd
-        line: "session optional pam_exec.so /usr/local/bin/ntfy-ssh-login.sh"
-        state: present
-        regexp: "^session optional pam_exec.so /usr/local/bin/ntfy-ssh-login.sh"
-      become: yes
