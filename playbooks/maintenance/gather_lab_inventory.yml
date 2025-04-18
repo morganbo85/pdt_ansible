@@ -1,0 +1,31 @@
+---
+- name: Gather Home Lab Inventory from Ubuntu VMs
+  hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Get system serial number
+      command: dmidecode -s system-serial-number
+      register: serial_number
+      changed_when: false
+      ignore_errors: true
+
+    - name: Get system model
+      command: dmidecode -s system-product-name
+      register: model_name
+      changed_when: false
+      ignore_errors: true
+
+    - name: Print collected system inventory
+      debug:
+        msg: |
+          Hostname: {{ ansible_hostname }}
+          IP Address: {{ ansible_default_ipv4.address }}
+          OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
+          Model: {{ model_name.stdout | default('Unavailable') }}
+          Service Tag: {{ serial_number.stdout | default('Unavailable') }}
+          Warranty Expiration: Unknown
+          Dependencies: (Fill manually)
+          Created: {{ lookup('pipe', 'date +%F') }}
+          Last Edited: (Fill manually)
