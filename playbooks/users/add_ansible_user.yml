@@ -1,6 +1,6 @@
 ---
 - name: Create passwordless 'ansible' user for automation
-  hosts: all
+  hosts: 
   become: yes
   tasks:
 
