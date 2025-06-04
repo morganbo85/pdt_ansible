@@ -4,6 +4,7 @@ firefly         ansible_host=192.168.10.87
 lubelogger      ansible_host=192.168.10.88
 gitea           ansible_host=192.168.10.208
 notifications   ansible_host=3.224.161.144
+kuma		ansible_host=192.168.10.119
 
 [all:vars]
 ansible_user=ansible
